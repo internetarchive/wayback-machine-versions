@@ -7,8 +7,8 @@ var WLWebArchiveBaseUriToExclude = [
 
 // schema.org attributes to support
 var WLSchemaOrgAttributes = {
-    "date-published": "Get near page creation date ",
-    "date-modified": "Get near page modified date "
+    "date-published": "",
+    "date-modified": ""
 }
 
 const WLURL = "https:"+"//web.archive.org/web/";
@@ -86,16 +86,53 @@ function WLFormatDate(dateStr) {
     return datestring;
 }
 
-// Formats the dateStr in the readable format YYYY-MM-DD HH:mm:SS
-function WLPrintDate(dateStr){
-    var formatted = WLFormatDate(dateStr);
-    var date = formatted.substr(0, 4) + '-' + formatted.substr(4, 2)+ '-' + formatted.substr(6, 2);
+// Convert YYYYMMDDHHmmSS to YYYY-MM-DD HH:mm:SS
+function WLParseDate(dateStr) {
+    if (dateStr.length != 14) return null; 
 
-    if (formatted.substr(8, 6) != '000000'){
-        date += ' '+formatted.substr(8, 2) + ':' + formatted.substr(10, 2)+ ':' + formatted.substr(12, 2);
-    }
-    return date;
+    var datestring = '';
+    datestring += dateStr.substr(0, 4) + "-";
+    datestring += dateStr.substr(4, 2) + "-";
+    datestring += dateStr.substr(6, 2) + " ";
+    datestring += dateStr.substr(8, 2) + ":";
+    datestring += dateStr.substr(10, 2) + ":";
+    datestring += dateStr.substr(12, 2);
+
+    return datestring;
 }
+
+// Formats the dateStr in the readable format MMMM nth, YYYY @ HH:mm:SS
+function WLPrintDate(dateStr){
+    var date = new Date(dateStr);
+    if(isNaN(date)){
+        date = new Date(dateStr.replace(/ /g,'T'));
+        if(isNaN(date)){
+            return 'Invalid date';
+        }
+    }
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    var datestring = '';
+    datestring += monthNames[date.getUTCMonth()] + " ";
+    datestring += nth(date.getUTCDate()) + ", ";
+    datestring += date.getUTCFullYear() + " @ ";
+    datestring += WLAddZero(date.getUTCHours()) + ":";
+    datestring += WLAddZero(date.getUTCMinutes()) + ":";
+    datestring += WLAddZero(date.getUTCSeconds());
+
+    return datestring;
+}
+
+// Get nth of day
+function nth(d) {
+    if(d>3 && d<21) return d + 'th';
+    switch (d % 10) {
+          case 1:  return d + "st";
+          case 2:  return d + "nd";
+          case 3:  return d + "rd";
+          default: return d + "th";
+      }
+  } 
 
 // Extracts the domain name from an archive url.
 function WLPrintDomainName(url) {
@@ -112,6 +149,18 @@ function WLPrintDomainName(url) {
         }
     }
     return 'unknown archive';
+}
+
+// Return date string as YYYY-MM-DD HH:mm:SS format
+function WLVersionDate(url) {
+    url = "http://web.archive.org/web/20171112200853/http://iskme.org/";
+    var WLVersionDateRegexp = /(https?:\/\/web.archive.org\/web\/)(\d*)(\/)/g;
+    match = WLVersionDateRegexp.exec(url);
+    if (match !== null && match.length == 4) {
+        return WLParseDate(match[2]);
+    } else {
+        return null;
+    }
 }
 
 // Keeps track of the last open menu to close it.
@@ -171,9 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // The memento url is either data-version-url or in the href if data-original-url exists
         var memento =  WLGetAttribute(links[i], 'data-version-url');
         var hasMemento = Boolean(memento);
-        if(!hasMemento && hasOriginal) {
-            memento = linkHREF;
-        }
+
         // The datetime is the data-versiondate
         var datetime = WLGetAttribute(links[i], 'data-version-date');
         var hasDatetime = Boolean(datetime);
@@ -218,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Adds the title to the dropdown menu
             var listItem = document.createElement('li');
             listItem.setAttribute('class', 'WLTitle');
-            listItem.innerHTML = 'Wayback Links';
+            listItem.innerHTML = 'Get from the Wayback Machine';
             dropDownItem.appendChild(listItem);
 
             // Adds the Menu Items to the dropdown menu
@@ -229,10 +276,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if(hasDatetime){
                 var linkDateStr = WLFormatDate(datetime);
                 var link = WLURL+linkDateStr+'/'+original;
-                WL_appendHiddenLink(dropDownItem, 'Get near link date '+ WLPrintDate(datetime), link);
+                WL_appendHiddenLink(dropDownItem, WLPrintDate(datetime), link);
             }
-            if(hasMemento || hasOriginal){
-                WL_appendHiddenLink(dropDownItem, 'Get from '+ WLPrintDomainName(memento), memento);
+            if(hasMemento){
+                if (WLVersionDate(memento)) {
+                    WL_appendHiddenLink(dropDownItem, WLPrintDate(WLVersionDate(memento)), memento);
+                }
             }
             if(hasOriginal){
                 WL_appendHiddenLink(dropDownItem, 'Get at current date', original);
