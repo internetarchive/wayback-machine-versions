@@ -46,3 +46,6 @@ var WLuriPatternsToExclude = [
 
 ## Example
 * [test.html](https://github.com/Eagle19243/Wayback-Links/blob/master/test/test.html)
+
+This project is based on: http://robustlinks.mementoweb.org
+
