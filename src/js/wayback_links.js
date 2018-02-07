@@ -153,7 +153,7 @@ function WLPrintDomainName(url) {
 
 // Return date string as YYYY-MM-DD HH:mm:SS format
 function WLVersionDate(url) {
-    url = "http://web.archive.org/web/20171112200853/http://iskme.org/";
+    //url = "http://web.archive.org/web/20171112200853/http://iskme.org/";
     var WLVersionDateRegexp = /(https?:\/\/web.archive.org\/web\/)(\d*)(\/)/g;
     match = WLVersionDateRegexp.exec(url);
     if (match !== null && match.length == 4) {
