@@ -7,8 +7,8 @@ var WLWebArchiveBaseUriToExclude = [
 
 // schema.org attributes to support
 var WLSchemaOrgAttributes = {
-    "date-published": "",
-    "date-modified": ""
+    "datePublished": "",
+    "dateModified": ""
 }
 
 const WLURL = "https:"+"//web.archive.org/web/";
@@ -212,17 +212,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // The original is either in the attribute or in the href
-        var original =  WLGetAttribute(links[i], 'data-original-url');
+        var original =  WLGetAttribute(links[i], 'data-originalurl');
         var hasOriginal = Boolean(original);
         if (!hasOriginal){
             original = linkHREF;
         }
-        // The memento url is either data-version-url or in the href if data-original-url exists
-        var memento =  WLGetAttribute(links[i], 'data-version-url');
+        // The memento url is either data-versionurl or in the href if data-originalurl exists
+        var memento =  WLGetAttribute(links[i], 'data-versionurl');
         var hasMemento = Boolean(memento);
 
         // The datetime is the data-versiondate
-        var datetime = WLGetAttribute(links[i], 'data-version-date');
+        var datetime = WLGetAttribute(links[i], 'data-versiondate');
         var hasDatetime = Boolean(datetime);
 
         // Menu appearance conditions
