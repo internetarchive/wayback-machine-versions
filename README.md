@@ -11,8 +11,8 @@ To build, simply run the following commands:
 Simply append the following lines to the `<head>` of your HTML source:
 
 ```html
-<link rel="stylesheet" type="text/css" href="http://rawgit.com/Eagle19243/Wayback-Links/master/build/css/wayback-links.min.css" />
-<script type="text/javascript" src="http://rawgit.com/Eagle19243/Wayback-Links/master/build/js/wayback-links.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/internetarchive/wayback-machine-versions/0c2c778e/build/css/wayback-links.min.css" />
+<script type="text/javascript" src="https://cdn.rawgit.com/internetarchive/wayback-machine-versions/0c2c778e/build/js/wayback-links.min.js"></script>
 ```
 
 ## WaybackLinks Menu
