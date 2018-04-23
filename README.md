@@ -4,7 +4,7 @@
 
 To build, simply run the following commands:
 * `npm install`
-* `gulp compile`
+* `gulp build`
 
 ## Add Wayback Links To Your Webpages
 
@@ -21,7 +21,8 @@ After adding the WaybackLinks javascript and css to your HTML file, a new link i
 
 * `Get near link date ...`: When clicking this menu item, the javascript library will use the datetime provided in the `data-versiondate` attribute along with the original url and redirect you to the closest archived playback page.
 
-* `Get from ...`: Clicking this menu item will redirect you to the playback page url provided in the `data-versionurl` attribute.
+* `Get from ...`: Clicking this menu item will redirect you to the playback page url provided in the `data-versionurl` attribute. The value of `data-versionurl` can be single URL or comma separated URLs.
+In the case of comma separated URLs, the items for the URLs will be listed in menu.
 
 * `Get at current date`: Clicking this menu item will take you to the original url provided in the `data-originalurl` attribute.
 
@@ -45,7 +46,7 @@ var WLuriPatternsToExclude = [
 ```
 
 ## Example
-* [test.html](https://github.com/Eagle19243/Wayback-Links/blob/master/test/test.html)
+* [test.html](https://github.com/internetarchive/wayback-machine-versions/blob/master/test/test.html)
 
 This project is based on: http://robustlinks.mementoweb.org
 

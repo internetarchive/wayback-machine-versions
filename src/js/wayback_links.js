@@ -218,8 +218,8 @@ document.addEventListener('DOMContentLoaded', function() {
             original = linkHREF;
         }
         // The memento url is either data-versionurl or in the href if data-originalurl exists
-        var memento =  WLGetAttribute(links[i], 'data-versionurl');
-        var hasMemento = Boolean(memento);
+        var mementos =  WLGetAttribute(links[i], 'data-versionurl');
+        var hasMemento = Boolean(mementos);
 
         // The datetime is the data-versiondate
         var datetime = WLGetAttribute(links[i], 'data-versiondate');
@@ -279,9 +279,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 WL_appendHiddenLink(dropDownItem, WLPrintDate(datetime), link);
             }
             if(hasMemento){
-                if (WLVersionDate(memento)) {
-                    WL_appendHiddenLink(dropDownItem, WLPrintDate(WLVersionDate(memento)), memento);
-                }
+                var array_memento = mementos.split(',');
+                array_memento.forEach(function(memento){
+                    memento = memento.trim();
+                    if (WLVersionDate(memento)) {
+                        WL_appendHiddenLink(dropDownItem, WLPrintDate(WLVersionDate(memento)), memento);
+                    }
+                });
             }
             if(hasOriginal){
                 WL_appendHiddenLink(dropDownItem, 'Get at current date', original);
