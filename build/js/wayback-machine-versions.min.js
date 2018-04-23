@@ -1,7 +1,7 @@
 /*!
  * =============================================================
- * wayback-links v1.0.0 - Wayback Links
- * https://github.com/internetarchive/wayback-links#readme
+ * wayback-machine-versions v1.0.1 - Wayback Machine Versions
+ * https://github.com/internetarchive/wayback-machine-versions/blob/master/README.md
  *
  * (c) 2017 - Eagle19243
  * =============================================================

@@ -1,7 +1,7 @@
 {
-  "name": "wayback-links",
-  "version": "1.0.0",
-  "description": "Wayback Links",
+  "name": "wayback-machine-versions",
+  "version": "1.0.1",
+  "description": "Wayback Machine Versions",
   "main": "build/js/wayback-links.min.js",
   "directories": {
     "doc": "docs",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/internetarchive/wayback-links.git"
+    "url": "git+https://github.com/internetarchive/wayback-machine-versions.git"
   },
   "author": "Eagle19243",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/internetarchive/wayback-links/issues"
+    "url": "https://github.com/internetarchive/wayback-machine-versions/issues"
   },
-  "homepage": "https://github.com/internetarchive/wayback-links#readme",
+  "homepage": "https://github.com/internetarchive/wayback-machine-versions/blob/master/README.md",
   "dependencies": {
     "jquery": "*"
   },
