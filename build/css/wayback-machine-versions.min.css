@@ -1,6 +1,6 @@
 /*!
  * =============================================================
- * wayback-machine-versions v1.0.2 - Wayback Machine Versions
+ * wayback-machine-versions v1.0.3 - Wayback Machine Versions
  * https://github.com/internetarchive/wayback-machine-versions/blob/master/README.md
  *
  * (c) 2017 - Eagle19243
