@@ -45,21 +45,24 @@ ul.WLMenu{
     border: 1px solid;
     border-color: lightgrey;
     z-index: 99999;
-    width: 320px;
+    width: 300px;
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,.1);
 }
 
 [aria-label^="WLOuter"] a.WLItem {
     display: block;
-    padding: 5px;
+    padding: 3px 15px 3px 10px;
+    font-family: sans-serif;
+    // font-size: 14px;
 }
 
 [aria-label^="WLOuter"] .WLTitle {
     color: black;
+    font-family: sans-serif;
+    // font-size: 14px;
     text-decoration: none;
     display: block;
-    padding: 5px;
-    font-size: 18px;
-    text-align: center;
+    padding: 10px 15px 5px 10px;
 }
 
 [aria-label^="WLOuter"] a.WLItem:hover {

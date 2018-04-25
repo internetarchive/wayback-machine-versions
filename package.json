@@ -1,6 +1,6 @@
 {
   "name": "wayback-machine-versions",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Wayback Machine Versions",
   "main": "build/js/wayback-links.min.js",
   "directories": {

@@ -180,6 +180,17 @@ function WLGetAttribute(obj, str){
     }
 }
 
+// Set Title in dropdown
+function WLSetDropDownTitle(dropDownItem){
+    var count_links = dropDownItem.getElementsByClassName("waybackLinks WLItem").length;
+    var el_title = dropDownItem.getElementsByClassName("WLTitle")[0];
+    if (count_links > 1) {
+        el_title.innerHTML = "Versions from the Wayback Machine";
+    } else {
+        el_title.innerHTML = "Version from the Wayback Machine";
+    }
+}
+
 // Apply the script at the end of the loading.
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -265,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Adds the title to the dropdown menu
             var listItem = document.createElement('li');
             listItem.setAttribute('class', 'WLTitle');
-            listItem.innerHTML = 'Get from the Wayback Machine';
+            listItem.innerHTML = 'Versions from the Wayback Machine';
             dropDownItem.appendChild(listItem);
 
             // Adds the Menu Items to the dropdown menu
@@ -290,6 +301,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if(hasOriginal){
                 WL_appendHiddenLink(dropDownItem, 'Get at current date', original);
             }
+
+            WLSetDropDownTitle(dropDownItem);
 
             dropDownList.appendChild(arrowDown);
             dropDownList.appendChild(dropDownItem);
