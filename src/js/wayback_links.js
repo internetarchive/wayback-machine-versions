@@ -2,7 +2,7 @@
 // This list includes base URIs of web archives that rewrite wayback urls.
 // If unsure, do not edit.
 var WLWebArchiveBaseUriToExclude = [
-    "https?://web.archive.org/*"
+    // "https?://web.archive.org/*"
 ];
 
 // schema.org attributes to support
