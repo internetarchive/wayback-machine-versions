@@ -17,7 +17,7 @@ var WLLastOpen;
 
 if (typeof WLuriPatternsToExclude === 'undefined') {
     WLuriPatternsToExclude = [
-        "https?://archive.org*"
+        // "https?://archive.org*"
     ]
 }
 
@@ -238,12 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Menu appearance conditions
         // Constructs the regular expression of restricted URIs from the baseRestrictedURI and the ones given in parameters
-        var WLRestrictedRegexp = new RegExp('(?:'+WLuriPatternsToExclude.concat(WLWebArchiveBaseUriToExclude).join(')|(?:')+')');
+        // var WLRestrictedRegexp = new RegExp('(?:'+WLuriPatternsToExclude.concat(WLWebArchiveBaseUriToExclude).join(')|(?:')+')');
 
         var showLink  = (links[i].href.length > 0 &&  // no inner/empty links
             (' ' + links[i].className+' ').indexOf(' waybackLinks ') < 0 &&  // not a link we created
-            ((Object.keys(metaDates).length > 0 || hasOriginal || hasMemento || hasDatetime) && // one menu item at least
-            ! WLRestrictedRegexp.test(linkHREF)) && // .href can be rewritten. but so is the regexp 
+            ((Object.keys(metaDates).length > 0 || hasOriginal || hasMemento || hasDatetime)) && // .href can be rewritten. but so is the regexp 
             WLIsURL(linkHREF));  // test the cleaned uri
 
         if (showLink){

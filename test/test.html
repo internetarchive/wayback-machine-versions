@@ -9,16 +9,21 @@
         <script>
             // add urls that should be excluded from wayback links.
             // accepts full urls or valid regular expression patterns of urls.
-            var WLuriPatternsToExclude = [
-                "https?://archive.org*",
-                "https?://blog.archive.org*"
-            ];
+            // var WLuriPatternsToExclude = [
+            //     "https?://archive.org*",
+            //     "https?://blog.archive.org*"
+            // ];
         </script>
         <script src="../build/js/wayback-machine-versions.min.js"></script>
         <!-- <script src="../src/js/wayback_links.js"></script> -->
         
     </head>
     <body>
+        <a href="https://archive.org/donate" 
+            data-versionurl="http://web.archive.org/web/20051124144021/https://archive.org/donate/, 
+            http://web.archive.org/web/20120325061947/https://archive.org/donate/">
+            donate
+        </a><br/>
         <a href="https://web.archive.org" 
             data-versionurl="http://web.archive.org/web/20011115003516/http://www.archive.org:80/index.html/,
             http://web.archive.org/web/20110710205912/http://wayback.archive.org/web/,
